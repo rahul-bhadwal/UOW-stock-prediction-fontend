@@ -1,4 +1,4 @@
-import { Typography, Box, makeStyles, Paper, Divider } from "@material-ui/core"
+import { Typography, Box, makeStyles, Paper } from "@material-ui/core"
 import { Graph } from "../components/graph"
 import { PageWrapper } from "../components/pageWrapper"
 import { graphData, predictionGraphData, RechartsDummyData } from "../dummyData/data"

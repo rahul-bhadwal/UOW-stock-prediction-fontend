@@ -1,11 +1,11 @@
-import { Box, Divider, Paper, Typography } from "@material-ui/core";
+import { Box, Paper, Typography } from "@material-ui/core";
 
 export const StockInfo = () => (
     <Box width='70%'>
         <Paper style={{ borderRadius: 10, paddingTop: 10, paddingLeft: 25, paddingRight: 25, paddingBottom: 20 }} elevation={3} variant='outlined' >
             <Typography variant='body1' style={{ marginTop: 10, opacity: 0.5 }} >ASX:TLS</Typography>
             <Box display='flex' alignItems='center' mb={2} mt={2} >
-                <img src='./assets/telstra.png' style={{ width: 30, marginRight: 10 }} />
+                <img src='./assets/telstra.png' style={{ width: 30, marginRight: 10 }} alt='telstra logo' />
                 <Typography variant='h3'>Telstra</Typography>
             </Box>
 
