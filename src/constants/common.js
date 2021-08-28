@@ -1,0 +1,1 @@
+export const STOCK_API_KEY = '1EPJWTWNH7YTLY71'     //alpha vantage
