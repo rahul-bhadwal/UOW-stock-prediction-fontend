@@ -3,6 +3,7 @@ import { PageWrapper } from "../components/pageWrapper"
 import { StockInfo } from "../components/home/stockIinfo"
 import { Actions } from "../components/home/actions"
 import { StockChart } from "../components/stockChart"
+import { NewsContainer } from "../components/home/news/newsContainer"
 
 const useStyle = makeStyles({
   graphContiner: {
@@ -24,6 +25,9 @@ export const HomePage = () => {
       </Box>
 
       <StockChart />
+
+      <NewsContainer />
+      
       <Box mb={5} />
 
     </PageWrapper>
