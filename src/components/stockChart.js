@@ -24,10 +24,10 @@ export const StockChart = () => {
       .then(res => {
         const formattedData = Object.entries(res.data['Time Series (Daily)']).map(([date, dayRate]) => ({
           date,
-          price: dayRate['1. open'],
-          pred: dayRate['2. high']
+          price: parseFloat(dayRate['1. open']),
+          pred: parseFloat(dayRate['2. high'])
         }))
-        setStockChartData(formattedData)
+        setStockChartData(formattedData.reverse())
         setLoading(false)
       })
       .catch(e => console.log(e))
