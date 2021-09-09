@@ -1,4 +1,4 @@
-import { Paper, Box, Divider, Typography, Card, CardActionArea, CardMedia } from "@material-ui/core"
+import { Paper, Box, Divider, Typography } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import { getNews } from "../../../api/api"
 import { NewsCard } from "./newsCard"

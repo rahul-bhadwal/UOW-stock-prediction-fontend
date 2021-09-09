@@ -43,7 +43,7 @@ export const StockChart = () => {
       <Box height='320px' >
         {!loading ? (<ResponsiveContainer width='100%' height='100%'>
           <LineChart data={stockChartData} className={classes.graph}>
-            <Line type='linear' dataKey="price" stroke="#42435e" strokeWidth={3} dot={false} />
+            <Line type='linear' dataKey="price" stroke="#42435e" strokeWidth={2} dot={false} />
             <Line type='basis' dataKey="pred" stroke="rgb(255 12 0 / 15%)" dot={false} strokeWidth={50} />
             <XAxis padding={{ right: 30 }} dataKey='date' tickFormatter={_handleDateTick} />
             {/* <YAxis padding={{ top: 50, bottom: 40 }} width={45} /> */}

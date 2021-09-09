@@ -1,35 +1,19 @@
-import { Box, makeStyles } from "@material-ui/core"
+import { Box, Typography } from "@material-ui/core"
+import { StockList } from "../components/home/stockList"
 import { PageWrapper } from "../components/pageWrapper"
-import { StockInfo } from "../components/home/stockIinfo"
-import { Actions } from "../components/home/actions"
-import { StockChart } from "../components/stockChart"
-import { NewsContainer } from "../components/home/news/newsContainer"
-
-const useStyle = makeStyles({
-  graphContiner: {
-    '&>*': {
-      flexShrink: 1
-    }
-  }
-})
+import {Recommandation} from '../components/home/recommandation/recommandation'
 
 export const HomePage = () => {
-  const classes = useStyle()
 
-  return (
-    <PageWrapper pageTitle='UOW deepnet' >
-
-      <Box display='flex' gridGap={20} mb={3} mt={2} >
-        <StockInfo />
-        <Actions />
-      </Box>
-
-      <StockChart />
-
-      <NewsContainer />
-      
-      <Box mb={5} />
-
-    </PageWrapper>
-  )
+    return (
+        <PageWrapper>
+            <Box>
+                <Recommandation />
+            </Box>
+            <Box mt={4}>
+                {/* <Typography variant='h5' style={{marginBottom: 15}}>Predicted analysis</Typography> */}
+                <StockList />
+            </Box>
+        </PageWrapper>
+    )
 }
