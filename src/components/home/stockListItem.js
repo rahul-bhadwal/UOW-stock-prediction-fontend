@@ -34,11 +34,11 @@ export const StockListItem = ({item}) => {
   const history = useHistory()
 
   return (
-    <Card className={clsx(classes.card, getClassName)} onClick={() => history.push(ROUTES.stock)}>
+    <Card className={clsx(classes.card, getClassName)} onClick={() => history.push(`${ROUTES.stock}/${item.symbol}`)}>
       <CardActionArea style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start', padding: '6px 5px' }}>
         <CardContent style={{width: '100%'}}>
           <Box display='flex' alignItems='center' alignSelf='flex-start'>
-            <img src={`./assets/${item.logo}`} alt='logo' height='30px' style={{ marginRight: 8 }} />
+            <img src={`/assets/${item.logo}`} alt='logo' height='30px' style={{ marginRight: 8 }} />
             <Typography variant='h6' color='secondary'>{item.name}</Typography>
           </Box>
           <Box mt={3} display='flex' justifyContent='flex-end' mb={-0.5}>

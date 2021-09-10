@@ -14,13 +14,13 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export const StockChart = () => {
+export const StockChart = ({symbol}) => {
   const classes = useStyles()
   const [stockChartData, setStockChartData] = useState()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchStockData()
+    fetchStockData(symbol)
       .then(res => {
         const formattedData = Object.entries(res.data['Time Series (Daily)']).map(([date, dayRate]) => ({
           date,

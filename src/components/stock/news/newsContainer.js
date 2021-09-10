@@ -3,11 +3,11 @@ import { useEffect, useState } from "react"
 import { getNews } from "../../../api/api"
 import { NewsCard } from "./newsCard"
 
-export const NewsContainer = () => {
+export const NewsContainer = ({stockName}) => {
     const [newsList, setNewsList] = useState()
 
     useEffect(() => {
-        getNews('telstra')
+        getNews(stockName)
             .then(res => setNewsList(res.data.articles))
             .catch(e => console.log(e))
     }, [])

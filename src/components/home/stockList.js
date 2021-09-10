@@ -6,11 +6,13 @@ export const StockList = () => {
         {
             name: 'Telstra',
             logo: 'telstra.png',
+            symbol: 'TLSYY',
             prediction: 1
         },
         {
             name: 'Qantas',
             logo: 'qantas.png',
+            symbol: 'QABSY',
             prediction: 0
         },
     ]

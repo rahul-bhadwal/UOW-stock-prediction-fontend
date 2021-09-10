@@ -7,7 +7,7 @@ import { HomePage } from "./pages/home";
 function App() {
   return (
     <Switch>
-      <Route path={ROUTES.stock} component={StockPage} />
+      <Route path={`${ROUTES.stock}/:symbol`} component={StockPage} />
       <Route path={ROUTES.home} component={HomePage} />
     </Switch>
   );

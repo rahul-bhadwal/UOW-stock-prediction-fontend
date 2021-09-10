@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     }
 })
 
-export const Button = ({children, red, green}) => {
+export const Button = ({children, red, green, onClick}) => {
     const classes = useStyles()
 
     return (
@@ -35,5 +35,6 @@ export const Button = ({children, red, green}) => {
         variant='contained'
         className={clsx(classes.root, red && classes.red, green && classes.green)}
         disableElevation
+        onClick={onClick}
     >{children}</MuiButton>
 )}
