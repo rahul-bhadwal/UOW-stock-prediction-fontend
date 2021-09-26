@@ -1,7 +1,17 @@
-import { Box } from "@material-ui/core"
+import { Box, makeStyles } from "@material-ui/core"
 import { StockListItem } from "./stockListItem"
 
+const useStyles = makeStyles({
+    scrollContainer: {
+        '&::-webkit-scrollbar': {
+            display: 'none'
+        },
+        scrollbarWidth: 'none'
+    }
+})
+
 export const StockList = () => {
+    const classes = useStyles()
     const stocks = [
         {
             name: 'Telstra',
@@ -19,7 +29,7 @@ export const StockList = () => {
 
     return (
         <Box>
-            <Box display='grid' gridTemplateColumns='auto auto auto auto auto auto auto auto auto' gridGap={20}>
+            <Box className={classes.scrollContainer} display='flex' gridGap={20} overflow='scroll' padding={1.5} margin={-1.5} >
                 {stocks.map((stock, index) => <StockListItem key={index} item={stock} />)}
             </Box>
         </Box>

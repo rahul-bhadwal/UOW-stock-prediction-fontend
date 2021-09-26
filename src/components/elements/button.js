@@ -1,4 +1,4 @@
-import { Button as MuiButton, useTheme, makeStyles, Box } from "@material-ui/core"
+import { Button as MuiButton, makeStyles } from "@material-ui/core"
 import clsx from "clsx"
 import { Colors } from "../../constants/colors"
 

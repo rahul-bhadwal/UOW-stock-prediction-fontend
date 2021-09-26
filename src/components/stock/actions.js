@@ -2,7 +2,7 @@ import { Box, Divider, Paper, Typography } from "@material-ui/core";
 import { Skeleton } from '@material-ui/lab';
 
 export const Actions = () => (
-    <Box flexGrow={1} display='flex' >
+    <Box flexGrow={1} display='flex' width="55%" >
         <Paper variant='outlined' style={{borderRadius: 10, padding: 20, paddingTop: 25, width: '100%'}}>
             <Box>
                 <Typography variant='h5'>Recommanded actions</Typography>

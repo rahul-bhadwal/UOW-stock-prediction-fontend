@@ -11,8 +11,8 @@ export const NewsCard = ({ url, title, image }) => (
                     style={{ width: 130, height: 80, position: 'relative!important', objectFit: 'fill' }}
                     image={image}
                 />
-                <CardContent style={{ position: 'absolute !important', display: 'flex', alignItems: 'center', flexShrink: 1 }} >
-                    <Typography>{title}</Typography>
+                <CardContent>
+                    <Typography style={{height: 50, overflow: 'hidden'}} >{title}</Typography>
                 </CardContent>
             </Box>
         </CardActionArea>

@@ -1,10 +1,24 @@
-import { Paper, Box, Divider, Typography } from "@material-ui/core"
+import { Paper, Box, Divider, Typography, Grid, useMediaQuery, makeStyles } from "@material-ui/core"
 import { useEffect, useState } from "react"
 import { getNews } from "../../../api/api"
 import { NewsCard } from "./newsCard"
 
+const useStyles = makeStyles(({breakpoints}) => ({
+    container: {
+        borderRadius: 10,
+        marginTop: 24,
+        padding: 25,
+        [breakpoints.down('sm')]: {
+            padding: 20,
+            paddingBottom: 0,
+        },
+        paddingBottom: 0,
+    }
+}))
+
 export const NewsContainer = ({stockName}) => {
     const [newsList, setNewsList] = useState()
+    const classes = useStyles()
 
     useEffect(() => {
         getNews(stockName)
@@ -12,16 +26,18 @@ export const NewsContainer = ({stockName}) => {
             .catch(e => console.log(e))
     }, [])
 
+    const isMobileView = useMediaQuery('(max-width:600px)')
+    const bufferBox = !isMobileView && <Box height={3} />
     return (
-        <Paper style={{ padding: 25, borderRadius: 10, paddingBottom: 0, marginTop: 24 }} elevation={4} variant='outlined'>
+        <Paper className={classes.container} elevation={4} variant='outlined'>
             <Typography variant='h5'>News headlines</Typography>
             <Divider style={{ marginTop: 15 }} />
-            <Box display='grid' gridTemplateColumns='auto auto' gridGap={20} height='70vh' overflow='scroll' >
-                <Box height={3} />
+            <Box display='grid' gridTemplateColumns={isMobileView ? 'auto' : 'auto auto'} gridGap={20} height='70vh' overflow='scroll' style={{overflowX: 'hidden'}} >
+                {bufferBox}
                 <Box height={3} />
                 {newsList?.map(news => <NewsCard title={news.title} image={news.urlToImage} url={news.url} />)}
                 <Box height={3} />
-                <Box height={3} />
+                {bufferBox}
             </Box>
         </Paper>
     )

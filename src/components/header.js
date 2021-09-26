@@ -1,9 +1,18 @@
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { useHistory } from "react-router-dom"
 
-export const Header = ({ title }) => (
-    <AppBar variant='outlined'>
-        <Toolbar>
-            <Typography variant='h6' >{title}</Typography>
-        </Toolbar>
-    </AppBar>
-)
+export const Header = ({ title, withBackBtn }) => {
+    const history = useHistory()
+
+    return (
+        <AppBar variant='outlined'>
+            <Toolbar>
+                {withBackBtn && <IconButton color='secondary' onClick={() => history.goBack()} style={{marginRight: 10}} >
+                    <ArrowBackIcon />
+                </IconButton>}
+                <Typography variant='h6' >{title}</Typography>
+            </Toolbar>
+        </AppBar>
+    )
+}

@@ -5,7 +5,8 @@ import { ROUTES } from "../../constants/common";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 260,
+    width: 260,
+    minWidth: 230,
     borderRadius: 15,
   },
   green: {

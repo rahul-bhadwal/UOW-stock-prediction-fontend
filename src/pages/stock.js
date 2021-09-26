@@ -1,4 +1,4 @@
-import { Box, IconButton, makeStyles } from "@material-ui/core"
+import { Box, IconButton, makeStyles, useMediaQuery } from "@material-ui/core"
 import { useParams, useHistory } from "react-router-dom"
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { PageWrapper } from "../components/pageWrapper"
@@ -8,41 +8,36 @@ import { StockChart } from "../components/stockChart"
 import { NewsContainer } from "../components/stock/news/newsContainer"
 import { StockData } from "../dummyData/stock"
 
-const useStyle = makeStyles({
-  graphContiner: {
-    '&>*': {
-      flexShrink: 1
-    }
-  },
-  backBtn: {
-    position: 'fixed',
-    left: 30,
-    marginTop: 5,
-    backgroundColor: '#e0e0e07d',
-    border: '1.5px solid transparent',
-    '&:hover': {
-      border: '1.5px solid #cecece'
-    }
-  }
-})
+// const useStyle = makeStyles({
+//   graphContiner: {
+//     '&>*': {
+//       flexShrink: 1
+//     }
+//   },
+//   backBtn: {
+//     position: 'fixed',
+//     left: 30,
+//     marginTop: 5,
+//     backgroundColor: '#e0e0e07d',
+//     border: '1.5px solid transparent',
+//     '&:hover': {
+//       border: '1.5px solid #cecece'
+//     }
+//   }
+// })
 
 export const StockPage = () => {
-  const classes = useStyle()
   const { symbol } = useParams()
-  const history = useHistory()
+  const isMobileView = useMediaQuery('(max-width:600px)')
 
   const stock = StockData[symbol]
 
   return (
-    <PageWrapper>
+    <PageWrapper withBackBtn>
 
-      <IconButton className={classes.backBtn} color='secondary' onClick={() => history.goBack()}>
-        <ArrowBackIcon />
-      </IconButton>
-
-      <Box display='flex' gridGap={20} mb={3} mt={1} >
+      <Box display='flex' gridGap={20} mb={isMobileView ? 2 : 3} mt={isMobileView ? -0.8 : 1} >
         <StockInfo stock={stock} />
-        <Actions />
+        {!isMobileView && <Actions />}
       </Box>
 
       <StockChart symbol={symbol} />
