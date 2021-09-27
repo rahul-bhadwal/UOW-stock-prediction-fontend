@@ -1,8 +1,8 @@
-import { makeStyles, Paper, Typography, Divider, LinearProgress, useMediaQuery } from "@material-ui/core"
+import { makeStyles, Paper, Typography, Divider, LinearProgress, useMediaQuery, Box } from "@material-ui/core"
 import moment from 'moment'
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useQuery } from 'react-query'
-import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from "recharts"
+import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Tool, Rectangle } from "recharts"
 import { fetchStockJson } from "../api/api"
 
 const useStyles = makeStyles(theme => ({
@@ -31,13 +31,13 @@ export const StockChart = ({ symbol }) => {
   const graphEndRef = useRef(null)
   // const [stockChartData, setStockChartData] = useState()
   // const [loading, setLoading] = useState(true)
-  
+
   const scrollToBottom = () => {
     setTimeout(() => graphEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" }), 600)
   }
 
-  const { data: stockChartData, isLoading, error } = useQuery('stockData', () => fetchStockJson(symbol), {onSuccess: scrollToBottom})
-  
+  const { data: stockChartData, isLoading, error } = useQuery('stockData', () => fetchStockJson(symbol), { onSuccess: scrollToBottom })
+
   // useEffect(() => {
   //   fetchStockData(symbol)
   //     .then(res => {
@@ -52,7 +52,26 @@ export const StockChart = ({ symbol }) => {
   //     .catch(e => console.log(e))
   // }, [])
 
-  const _handleDateTick = tick => moment(tick).format('DD MMM')
+  const _handleDateTick = tick => moment(tick, 'DD-MM-YYYY').format('DD MMM')
+
+  const CustomTooltip = ({ active, payload, label }) => (
+    active && <Box bgcolor='#fff' borderRadius={10} border="1px solid #dedede" boxShadow="0 2px 8px -1px #bababa" px={1.5} py={1} >
+      <Typography variant='caption' ><b>{moment(label, 'DD-MM-YYYY').format('DD MMM YYYY')}</b></Typography>
+      <Box display='flex' flexDirection='column'>
+        {payload.map(entry => <Typography variant='caption' >{entry.name}: {entry.value.toFixed(2)}</Typography>)}
+      </Box>
+    </Box>
+  )
+
+  const CustomCursor = props => {
+    const { points, height, stroke } = props;
+    const [config, setConfig] = useState({ w: 1, c: stroke })
+    const _handleCLick = () => {
+      setConfig({ w: 1, c: 'grey' })
+      // setTimeout(()=>setConfig({w: 1, c: stroke}), 80)
+    }
+    return <Rectangle fill={config.c} x={points[0].x} width={config.w} height={height} onMouseDownCapture={_handleCLick} onMouseUpCapture={() => setConfig({ w: 1, c: stroke })} />;
+  }
 
   //#2b46a2
   return (
@@ -60,13 +79,14 @@ export const StockChart = ({ symbol }) => {
       <Typography variant='h5'>Forecasts</Typography>
       <Divider style={{ marginTop: 15 }} />
       <div className={classes.graphContainer} id="graph-container" >
-        {!isLoading ? (<ResponsiveContainer width={isMobile ? 1200 : '100%'} height='100%'>
+        {!isLoading ? (<ResponsiveContainer width={isMobile ? 1200 : 2000} height='100%'>
           <LineChart data={stockChartData} className={classes.graph}>
             <Line type='linear' dataKey="Open" stroke="#42435e" strokeWidth={2} dot={false} />
             <Line type='basis' dataKey="Prediction" stroke="rgb(255 12 0 / 45%)" dot={false} strokeWidth={10} />
             <XAxis padding={{ right: 30 }} dataKey='Date' tickFormatter={_handleDateTick} />
             {/* <YAxis padding={{ top: 50, bottom: 40 }} width={45} /> */}
-            <Tooltip />
+            <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
+            {/* <Tooltip  /> */}
           </LineChart>
         </ResponsiveContainer>)
           :
