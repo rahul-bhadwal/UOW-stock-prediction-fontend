@@ -33,7 +33,7 @@ export const StockChart = ({ symbol }) => {
   // const [loading, setLoading] = useState(true)
 
   const scrollToBottom = () => {
-    setTimeout(() => graphEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" }), 600)
+    setTimeout(() => graphEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" }), 500)
   }
 
   const { data: stockChartData, isLoading, error } = useQuery('stockData', () => fetchStockJson(symbol), { onSuccess: scrollToBottom })
@@ -52,11 +52,11 @@ export const StockChart = ({ symbol }) => {
   //     .catch(e => console.log(e))
   // }, [])
 
-  const _handleDateTick = tick => moment(tick, 'DD-MM-YYYY').format('DD MMM')
+  const _handleDateTick = tick => moment(tick, 'YYYY-MM-DD').format('DD MMM')
 
   const CustomTooltip = ({ active, payload, label }) => (
     active && <Box bgcolor='#fff' borderRadius={10} border="1px solid #dedede" boxShadow="0 2px 8px -1px #bababa" px={1.5} py={1} >
-      <Typography variant='caption' ><b>{moment(label, 'DD-MM-YYYY').format('DD MMM YYYY')}</b></Typography>
+      <Typography variant='caption' ><b>{moment(label, 'YYYY-MM-DD').format('DD MMM YYYY')}</b></Typography>
       <Box display='flex' flexDirection='column'>
         {payload.map(entry => <Typography variant='caption' >{entry.name}: {entry.value.toFixed(2)}</Typography>)}
       </Box>
