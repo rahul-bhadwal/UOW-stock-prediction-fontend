@@ -2,7 +2,7 @@ import { makeStyles, Paper, Typography, Divider, LinearProgress, useMediaQuery, 
 import moment from 'moment'
 import { useRef, useState } from "react"
 import { useQuery } from 'react-query'
-import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Tool, Rectangle } from "recharts"
+import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip, Rectangle, YAxis } from "recharts"
 import { fetchStockJson } from "../api/api"
 
 const useStyles = makeStyles(theme => ({
@@ -79,14 +79,13 @@ export const StockChart = ({ symbol }) => {
       <Typography variant='h5'>Forecasts</Typography>
       <Divider style={{ marginTop: 15 }} />
       <div className={classes.graphContainer} id="graph-container" >
-        {!isLoading ? (<ResponsiveContainer width={isMobile ? 1200 : 2000} height='100%'>
+        {!isLoading ? (<ResponsiveContainer width={isMobile ? 2200 : 2200} height='100%'>
           <LineChart data={stockChartData} className={classes.graph}>
             <Line type='linear' dataKey="Open" stroke="#42435e" strokeWidth={2} dot={false} />
             <Line type='basis' dataKey="Prediction" stroke="rgb(255 12 0 / 45%)" dot={false} strokeWidth={10} />
-            <XAxis padding={{ right: 30 }} dataKey='Date' tickFormatter={_handleDateTick} />
-            {/* <YAxis padding={{ top: 50, bottom: 40 }} width={45} /> */}
+            <XAxis padding={{ right: 30 }} dataKey='Date' tickFormatter={_handleDateTick}/>
+            <YAxis domain={['auto', 'auto']} hide />
             <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
-            {/* <Tooltip  /> */}
           </LineChart>
         </ResponsiveContainer>)
           :

@@ -1,9 +1,8 @@
-import { Box, IconButton, makeStyles, useMediaQuery } from "@material-ui/core"
-import { useParams, useHistory } from "react-router-dom"
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Box, useMediaQuery } from "@material-ui/core"
+import { useParams } from "react-router-dom"
 import { PageWrapper } from "../components/pageWrapper"
 import { StockInfo } from "../components/stock/stockIinfo"
-import { Actions } from "../components/stock/actions"
+import { RealtimePrediction } from "../components/stock/realtimePrediction"
 import { StockChart } from "../components/stockChart"
 import { NewsContainer } from "../components/stock/news/newsContainer"
 import { StockData } from "../dummyData/stock"
@@ -35,9 +34,16 @@ export const StockPage = () => {
   return (
     <PageWrapper withBackBtn>
 
-      <Box display='flex' gridGap={20} mb={isMobileView ? 2 : 3} mt={isMobileView ? -0.8 : 1} >
+      <Box 
+        display='flex'
+        gridGap={20} 
+        mb={isMobileView ? 2 : 3} 
+        mt={isMobileView ? -0.8 : 1} 
+        flexDirection={isMobileView ? 'column' : 'row'}
+      >
         <StockInfo stock={stock} />
-        {!isMobileView && <Actions />}
+        {/* {!isMobileView && <RealtimePrediction />} */}
+        {<RealtimePrediction />}
       </Box>
 
       <StockChart symbol={symbol} />

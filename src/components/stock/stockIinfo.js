@@ -13,7 +13,7 @@ export const StockInfo = ({ stock }) => {
     const isMobileView = useMediaQuery('(max-width:600px)')
 
     return (
-        <Box>
+        <Box width={isMobileView ? "100%" : "55%"} >
             <Paper style={{ borderRadius: 10, padding: isMobileView ? 20 : 25, paddingTop: 10 }} elevation={3} variant='outlined' >
                 <Typography variant='body1' style={{ marginTop: 10, opacity: 0.5 }} >ASX:TLS</Typography>
                 <Box display='flex' alignItems='center' mb={2} mt={2} >
@@ -24,7 +24,7 @@ export const StockInfo = ({ stock }) => {
                 <Typography variant='body1' style={{ opacity: 0.7 }}>{stock.desc}</Typography>
 
                 <Divider style={{ marginTop: 18 }} />
-                <Box mt={2.6} gridGap={20} display='flex' flexDirection={isMobileView && 'column'}>
+                <Box mt={2.6} gridGap={20} display='flex' flexDirection={isMobileView ? 'column' : 'row'}>
                     <Button green onClick={_handleBtnClick} >Open position</Button>
                     <Button red onClick={_handleBtnClick} >Close position</Button>
                 </Box>
