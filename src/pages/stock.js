@@ -43,7 +43,7 @@ export const StockPage = () => {
       >
         <StockInfo stock={stock} />
         {/* {!isMobileView && <RealtimePrediction />} */}
-        {<RealtimePrediction />}
+        {<RealtimePrediction stockSymbol={symbol} />}
       </Box>
 
       <StockChart symbol={symbol} />
