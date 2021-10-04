@@ -12,7 +12,7 @@ export const formatRealtimePredictionData = (predArry, startDate) => {
 
 export const getPredictionApiSymbol = symbol => {
     switch(symbol){
-        case 'QABSY': return 'QAS'
+        case 'QABSY': return 'QAN'
         case 'TLSYY': return 'TLS'
         default: return null
     }

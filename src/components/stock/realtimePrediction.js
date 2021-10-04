@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Divider, LinearProgress, makeStyles, Paper, Typography, useMediaQuery } from "@material-ui/core";
 import { Skeleton } from '@material-ui/lab';
 import moment from 'moment'
@@ -44,17 +44,23 @@ export const RealtimePrediction = ({ stockSymbol }) => {
   const [date, setDate] = useState(new Date('Nov 01 2020'))
   const isMobileView = useMediaQuery('(max-width:600px)')
   const predictionSymbol = getPredictionApiSymbol(stockSymbol)
+  const [predictionData, setPredictionData] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  // const { data: predictionData, isLoading, error, isFetching, is } = useQuery(
+  //   'predictions',
+  //   () => fetchRealtimePrediction(predictionSymbol, moment(date).format('YYYY-MM-DD'))
+  // )
 
-  const { date: predictionData, isLoading, error } = useQuery(
-    'predictions',
-    () => fetchRealtimePrediction(predictionSymbol, moment(date).format('YYYY-MM-DD'))
-  )
-
-  // useEffect(() => {
-  // 	fetchRealtimePrediction('QAN', '2020-12-17')
-  // 		.then(res => console.log(res.data))
-  // 		.catch(e => console.log(e))
-  // }, [])
+  
+  useEffect(() => {
+    setIsLoading(true)
+    fetchRealtimePrediction(predictionSymbol, moment(date).format('YYYY-MM-DD'))
+    .then(res => setPredictionData(res))
+    .catch(e => console.log(e))
+    .finally(() => setIsLoading(false))
+  }, [date])
+  
+  console.log(isLoading);
 
   return (
     <Box flexGrow={isMobileView ? 'unset' : 1} display='flex'  >
@@ -71,6 +77,8 @@ export const RealtimePrediction = ({ stockSymbol }) => {
               maxDate={'Dec 23 2020'}
               onChange={setDate}
               style={{ width: 149 }}
+              autoOk={true}
+              disabled={isLoading}
             />
           </MuiPickersUtilsProvider>
         </Box>
@@ -84,8 +92,8 @@ export const RealtimePrediction = ({ stockSymbol }) => {
             :
             <Box mt={1} width='100%' height={188}>
               <ResponsiveContainer width='100%' height='100%'>
-                <LineChart data={formatRealtimePredictionData(predictionData, date)} className={classes.graph} >
-                  <Line type='linear' dataKey='prediction' strokeWidth={3} dot={{ strokeWidth: 4 }} animationDuration={500} />
+                <LineChart data={formatRealtimePredictionData(predictionData[0], date)} className={classes.graph} >
+                  <Line type='monotone' dataKey='prediction' strokeWidth={3} dot={{ strokeWidth: 4 }} animationDuration={500} />
                   <XAxis dataKey='date' tickFormatter={tick => moment(tick).format('DD MMM')} interval={"preserveStartEnd"} />
                   <YAxis domain={['auto', 'auto']} hide />
                   <Tooltip content={<CustomTooltip />} />
