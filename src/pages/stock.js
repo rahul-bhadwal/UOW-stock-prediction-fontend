@@ -1,11 +1,15 @@
-import { Box, useMediaQuery } from "@material-ui/core"
-import { useParams } from "react-router-dom"
-import { PageWrapper } from "../components/pageWrapper"
-import { StockInfo } from "../components/stock/stockIinfo"
-import { RealtimePrediction } from "../components/stock/realtimePrediction"
-import { StockChart } from "../components/stockChart"
-import { NewsContainer } from "../components/stock/news/newsContainer"
-import { StockData } from "../dummyData/stock"
+import { Box, useMediaQuery, useTheme } from "@material-ui/core";
+import { useParams } from "react-router-dom";
+import { PageWrapper } from "../components/pageWrapper";
+import { StockInfo } from "../components/stock/stockIinfo";
+import { RealtimePrediction } from "../components/stock/realtimePrediction";
+import { StockChart } from "../components/stockChart";
+import { NewsContainer } from "../components/stock/news/newsContainer";
+import { StockData } from "../dummyData/stock";
+import { CompanyStats } from "../components/stock/companyStats/CompanyStats";
+import { MarginPieChart } from "../components/stock/companyStats/PieChart";
+import { StockStats } from "../dummyData/stats";
+import { Colors } from "../constants/colors";
 
 // const useStyle = makeStyles({
 //   graphContiner: {
@@ -26,32 +30,56 @@ import { StockData } from "../dummyData/stock"
 // })
 
 export const StockPage = () => {
-  const { symbol } = useParams()
-  const isMobileView = useMediaQuery('(max-width:600px)')
+  const { symbol } = useParams();
+  const isMobileView = useMediaQuery("(max-width:600px)");
 
-  const stock = StockData[symbol]
+  const stock = StockData[symbol];
+  const Stats = StockStats[symbol];
+
+  const MarginData = [
+    {
+      fill: Colors.ORANGE,
+      name: "Gross profit",
+      value: Stats.gross_profit_margin,
+    },
+    {
+      fill: Colors.GREEN_1,
+      name: "Net profit",
+      value: Stats.net_profit_margin,
+    },
+    {
+      fill: Colors.YELLOW,
+      name: "Operating Magin",
+      value: Stats.operating_margin,
+    },
+  ];
 
   return (
     <PageWrapper withBackBtn>
-
-      <Box 
-        display='flex'
-        gridGap={20} 
-        mb={isMobileView ? 2 : 3} 
-        mt={isMobileView ? -0.8 : 1} 
-        flexDirection={isMobileView ? 'column' : 'row'}
+      <Box
+        display="flex"
+        gridGap={20}
+        mb={isMobileView ? 2 : 3}
+        mt={isMobileView ? -0.8 : 1}
+        flexDirection={isMobileView ? "column" : "row"}
       >
-        <StockInfo stock={stock} />
+        <StockInfo stock={stock} symbol={symbol} />
         {/* {!isMobileView && <RealtimePrediction />} */}
         {<RealtimePrediction stockSymbol={symbol} />}
       </Box>
 
       <StockChart symbol={symbol} />
 
-      <NewsContainer stockName={stock.name} />
-      
-      <Box mb={5} />
+      <Box sx={{ fontFamily: useTheme().typography.fontFamily }}>
+        <CompanyStats symbol={symbol} />
+      </Box>
 
+      <Box display="flex" gridGap={18}>
+        <MarginPieChart data={MarginData} />
+        <NewsContainer stockName={stock.name} />
+      </Box>
+
+      <Box mb={5} />
     </PageWrapper>
-  )
-}
+  );
+};
