@@ -3,6 +3,8 @@ import { StockList } from "../components/home/stockList";
 import { PageWrapper } from "../components/pageWrapper";
 import { Recommandation } from "../components/home/recommandation/recommandation";
 import { CompanyStats } from "../components/stock/companyStats/CompanyStats";
+import { DividendCard } from "../components/stock/statsCards/dividendCard";
+import { InfoTableCard } from "../components/stock/statsCards/InfoTableCard";
 
 export const HomePage = () => {
   const theme = useTheme();

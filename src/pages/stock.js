@@ -10,6 +10,7 @@ import { CompanyStats } from "../components/stock/companyStats/CompanyStats";
 import { MarginPieChart } from "../components/stock/companyStats/PieChart";
 import { StockStats } from "../dummyData/stats";
 import { Colors } from "../constants/colors";
+import { StatsCards } from "../components/stock/statsCards/StatsCards";
 
 // const useStyle = makeStyles({
 //   graphContiner: {
@@ -69,6 +70,8 @@ export const StockPage = () => {
       </Box>
 
       <StockChart symbol={symbol} />
+
+      <StatsCards symbol={symbol} />
 
       <Box sx={{ fontFamily: useTheme().typography.fontFamily }}>
         <CompanyStats symbol={symbol} />
