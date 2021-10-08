@@ -25,12 +25,19 @@ export const fetchStockJson = async (symbol) => {
   return data.data;
 };
 
-export const getSimilarity = async (symbol) => {
+export const fetchSimilarity = async (symbol) => {
   const res = await axios.get(`${ANALYSIS_API}/similarity?company=${symbol}`);
   return res.data;
 };
 
-export const getVolatility = async (symbol) => {
+export const fetchVolatility = async () => {
   const res = await axios.get(`${ANALYSIS_API}/volatility?range=yearly`);
+  return res.data;
+};
+
+export const fetchVolumeReturnRecomm = async (symbol) => {
+  const res = await axios.get(
+    `${ANALYSIS_API}/rvolume?company=${symbol}&sdt=2020-01-02&edt=2020-12-28`
+  );
   return res.data;
 };

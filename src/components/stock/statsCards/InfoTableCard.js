@@ -12,7 +12,6 @@ const useStyles = makeStyles({
     display: "flex",
     flexGrow: 1,
     borderRadius: 20,
-    marginLeft: 24,
     overflow: "hidden",
   },
 });

@@ -1,11 +1,14 @@
-import { Paper, Typography, Box } from "@material-ui/core";
+import { Paper, Typography, Box, useMediaQuery } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
   container: {
     borderRadius: 50,
     maxWidth: 200,
     display: "flex",
+    [theme.breakpoints.down("md")]: {
+      borderRadius: 30,
+    },
   },
   nameTxt: {
     fontSize: 17,
@@ -16,15 +19,20 @@ const useStyle = makeStyles({
     textAlign: "center",
     marginBottom: -5,
     marginTop: 5,
+    [theme.breakpoints.down("md")]: {
+      fontSize: 12,
+      marginTop: 0,
+    },
   },
-});
+}));
 
 const InfoCard = ({ name, value, smallFont }) => {
   const classes = useStyle();
+  const isMobile = useMediaQuery("(max-width:600px)");
   return (
     <Paper className={classes.container}>
       <Box
-        p={4}
+        p={isMobile ? 2 : 4}
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -34,14 +42,14 @@ const InfoCard = ({ name, value, smallFont }) => {
           variant="h3"
           style={{
             marginBottom: 10,
-            fontSize: smallFont ? 36 : 45,
+            fontSize: isMobile ? (smallFont ? 20 : 30) : smallFont ? 36 : 45,
             opacity: 0.5,
           }}
         >
           {value ? (
             <>
               {value}
-              <text style={{ fontSize: 25 }}>%</text>
+              <text style={{ fontSize: isMobile ? 15 : 25 }}>%</text>
             </>
           ) : (
             "-"
@@ -55,14 +63,18 @@ const InfoCard = ({ name, value, smallFont }) => {
   );
 };
 
-export const DividendCard = ({ rate, yild, avg }) => (
-  <Box display="flex" gridGap={24}>
-    <InfoCard name="Dividend Rate" value={rate} />
-    <InfoCard
-      name="Dividend Yild"
-      value={yild}
-      smallFont={yild && toString(yild).length > 3}
-    />
-    <InfoCard name="Dividend Yild 5y avg." value={avg} />
-  </Box>
-);
+export const DividendCard = ({ rate, yild, avg }) => {
+  const isMobile = useMediaQuery("(max-width:600px)");
+
+  return (
+    <Box display="flex" gridGap={isMobile ? 18 : 24}>
+      <InfoCard name="Dividend Rate" value={rate} />
+      <InfoCard
+        name="Dividend Yild"
+        value={yild}
+        smallFont={yild && toString(yild).length > 3}
+      />
+      <InfoCard name="Dividend Yild 5y avg." value={avg} />
+    </Box>
+  );
+};
