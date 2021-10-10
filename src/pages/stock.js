@@ -12,6 +12,8 @@ import { StockStats } from "../dummyData/stats";
 import { Colors } from "../constants/colors";
 import { StatsCards } from "../components/stock/statsCards/StatsCards";
 import { VolumeRecommandation } from "../components/stock/recommandation/VolumeRecommandation";
+import { RevenueEarning } from "../components/stock/companyStats/RevenueEarning";
+import { SimilarityRecommandation } from "../components/stock/recommandation/SimilarityRecommandation";
 
 // const useStyle = makeStyles({
 //   graphContiner: {
@@ -76,14 +78,22 @@ export const StockPage = () => {
 
       <VolumeRecommandation symbol={symbol} />
 
+      <SimilarityRecommandation symbol={symbol} />
+
       <Box sx={{ fontFamily: useTheme().typography.fontFamily }}>
         <CompanyStats symbol={symbol} />
       </Box>
 
-      <Box display="flex" gridGap={18}>
+      <Box
+        display="flex"
+        flexDirection={isMobileView ? "column" : "row"}
+        gridGap={24}
+        mb={3}
+      >
         <MarginPieChart data={MarginData} />
-        <NewsContainer stockName={stock.name} />
+        <RevenueEarning symbol={symbol} />
       </Box>
+      <NewsContainer stockName={stock.name} />
 
       <Box mb={5} />
     </PageWrapper>

@@ -11,8 +11,14 @@ import {
 import { Box, Typography } from "@material-ui/core";
 
 export const EarningBarChart = ({ data, title }) => (
-  <Box display="flex" flexDirection="column" alignItems="center">
-    <Box width={400} height={250} fontSize="13px">
+  <Box
+    display="flex"
+    width="50%"
+    height="100%"
+    flexDirection="column"
+    alignItems="center"
+  >
+    <Box width={"100%"} height={"100%"} fontSize="13px">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data}>
           <ReferenceLine y={0} stroke="#000" />
@@ -26,7 +32,12 @@ export const EarningBarChart = ({ data, title }) => (
     </Box>
     <Typography
       variant="body2"
-      style={{ opacity: 0.7, fontWeight: 600, marginBottom: 20 }}
+      style={{
+        opacity: 0.7,
+        fontWeight: 600,
+        marginBottom: 20,
+        textAlign: "center",
+      }}
     >
       {title}
     </Typography>

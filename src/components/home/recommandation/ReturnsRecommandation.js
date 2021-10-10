@@ -63,7 +63,6 @@ const CustomTooltip = ({ active, payload, label }) =>
 
 export const ReturnsRecommandation = ({ data: returnsData, isMobile }) => {
   const data = formatReturns(returnsData);
-  console.log(isMobile);
 
   return (
     <Box width={isMobile ? "100%" : 400} height={350}>

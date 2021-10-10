@@ -18,6 +18,7 @@ import {
   Tooltip,
   XAxis,
 } from "recharts";
+import { useMobileView } from "../../../common/utils";
 import { Colors } from "../../../constants/colors";
 
 const BarGraph = ({ data }) => (
@@ -41,61 +42,49 @@ const StyledRow = withStyles((theme) => ({
 }))(TableRow);
 
 export const BalanceSheet = ({ annualData, quarterData }) => {
+  const isMobileView = useMobileView();
+
   return (
-    <Box mt={4} mb={4}>
-      <Box display="flex" justifyContent="space-between">
-        <Typography variant="h6">Balance sheet</Typography>
-        <Box display="flex" alignItems="center" gridGap={30}>
-          <Box display="flex" alignItems="center">
-            <Box
-              width={15}
-              height={15}
-              borderRadius={50}
-              bgcolor={Colors.BLUE}
-              mr={1}
-            />
-            <Typography variant="body2">Assets</Typography>
-          </Box>
-          <Box display="flex" alignItems="center">
-            <Box
-              width={15}
-              height={15}
-              borderRadius={50}
-              bgcolor={Colors.ORANGE}
-              mr={1}
-            />
-            <Typography variant="body2">Debt</Typography>
-          </Box>
-        </Box>
-      </Box>
-      <Box display="flex" mt={2} justifyContent="space-between">
-        <TableContainer
-          component={Paper}
-          style={{ height: "fit-content", width: "60%" }}
+    <Box
+      display="flex"
+      mt={2}
+      justifyContent="space-between"
+      flexDirection={isMobileView ? "column" : "row"}
+    >
+      <TableContainer
+        component={Paper}
+        style={{ height: "fit-content", width: isMobileView ? "unset" : "60%" }}
+      >
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>Balance</TableCell>
+              <TableCell>Assets</TableCell>
+              <TableCell>Debt</TableCell>
+              <TableCell>Year/Quater</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {[...annualData, ...quarterData].map((ann, i) => (
+              <StyledRow key={i}>
+                <TableCell>{ann.balance}</TableCell>
+                <TableCell>{ann.totalAssets}</TableCell>
+                <TableCell>{ann.longTermDebt}</TableCell>
+                <TableCell>{ann.date}</TableCell>
+              </StyledRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      {isMobileView && <Box mt={3} />}
+      <Box display="flex" flexGrow={1}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          flexGrow={1}
         >
-          <Table size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell>Balance</TableCell>
-                <TableCell>Assets</TableCell>
-                <TableCell>Debt</TableCell>
-                <TableCell>Year/Quater</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {[...annualData, ...quarterData].map((ann, i) => (
-                <StyledRow key={i}>
-                  <TableCell>{ann.balance}</TableCell>
-                  <TableCell>{ann.totalAssets}</TableCell>
-                  <TableCell>{ann.longTermDebt}</TableCell>
-                  <TableCell>{ann.date}</TableCell>
-                </StyledRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Box display="flex" flexDirection="column" alignItems="center">
-          <Box width={150} flexGrow={1}>
+          <Box width={160} flexGrow={1}>
             <BarGraph data={annualData} />
           </Box>
           <Typography variant="body2" style={{ opacity: 0.7 }}>
@@ -103,8 +92,13 @@ export const BalanceSheet = ({ annualData, quarterData }) => {
           </Typography>
         </Box>
 
-        <Box display="flex" flexDirection="column" alignItems="center">
-          <Box width={150} flexGrow={1}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          flexGrow={1}
+        >
+          <Box width={160} flexGrow={1}>
             <BarGraph data={quarterData} />
           </Box>
           <Typography variant="body2" style={{ opacity: 0.7 }}>

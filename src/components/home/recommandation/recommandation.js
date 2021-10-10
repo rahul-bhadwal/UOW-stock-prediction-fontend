@@ -6,23 +6,14 @@ import {
   useMediaQuery,
   LinearProgress,
 } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { fetchVolatility } from "../../../api/api";
 import { ReturnsRecommandation } from "./ReturnsRecommandation";
 import { VoletalityRecommandation } from "./VoletalityRecommandation";
 
 export const Recommandation = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    fetchVolatility()
-      .then((res) => setData(res))
-      .catch((e) => console.log(e))
-      .finally(() => setLoading(false));
-  }, []);
+  const { data, isLoading } = useQuery("voletality", () => fetchVolatility());
 
   return (
     <Paper
@@ -38,7 +29,7 @@ export const Recommandation = () => {
     >
       <Typography variant="h5">Recommandations</Typography>
       <Divider style={{ marginTop: 15 }} />
-      {loading ? (
+      {isLoading ? (
         <Box height={460}>
           <LinearProgress style={{ opacity: 0.6 }} />
         </Box>

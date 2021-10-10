@@ -81,8 +81,6 @@ export const RealtimePrediction = ({ stockSymbol }) => {
       .finally(() => setIsLoading(false));
   }, [date]);
 
-  console.log(isLoading);
-
   return (
     <Box flexGrow={isMobileView ? "unset" : 1} display="flex">
       <Paper

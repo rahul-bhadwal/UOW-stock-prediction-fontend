@@ -5,7 +5,6 @@ import { StockStats } from "../../../dummyData/stats";
 import { BalanceSheet } from "./BalanceSheet";
 import { Colors } from "../../../constants/colors";
 import { Ratios } from "./Ratios";
-import { MarginPieChart } from "./PieChart";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   container: {
@@ -63,62 +62,42 @@ export const CompanyStats = ({ symbol }) => {
   ];
 
   const classes = useStyles();
+
   return (
     <Paper className={classes.container} elevation={4} variant="outlined">
-      <Typography variant="h5">Qantas statistics</Typography>
-      <Divider style={{ marginTop: 15 }} />
-      <Box p={2}>
-        <Box
-          display="flex"
-          mt={2}
-          mb={2}
-          alignItems="center"
-          justifyContent="space-around"
-        >
-          {/* <MarginPieChart data={MarginData} /> */}
-          <EarningBarChart
-            data={Stats.company_earnings_last_2}
-            title="Annual revenue/earning"
-          />
-          <EarningBarChart
-            data={Stats.company_quartely_earnings_last_2}
-            title="Quaterly revenue/earning (2021)"
-          />
-          <Box mx={5}>
-            <Box display="flex" alignItems="center">
-              <Box
-                width={50}
-                height={50}
-                bgcolor={Colors.BLUE}
-                borderRadius={50}
-                mr={2}
-              />
-              <Typography variant="h3" style={{ opacity: 0.4 }}>
-                Revenue
-              </Typography>
-            </Box>
-            <Box display="flex" mt={3} alignItems="center">
-              <Box
-                width={50}
-                height={50}
-                bgcolor={Colors.ORANGE}
-                borderRadius={50}
-                mr={2}
-              />
-              <Typography variant="h3" style={{ opacity: 0.4 }}>
-                Earnings
-              </Typography>
-            </Box>
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Typography variant="h5">Balance sheet</Typography>
+        <Box display="flex" alignItems="center" gridGap={30}>
+          <Box display="flex" alignItems="center">
+            <Box
+              width={15}
+              height={15}
+              borderRadius={50}
+              bgcolor={Colors.BLUE}
+              mr={1}
+            />
+            <Typography variant="body2">Assets</Typography>
+          </Box>
+          <Box display="flex" alignItems="center">
+            <Box
+              width={15}
+              height={15}
+              borderRadius={50}
+              bgcolor={Colors.ORANGE}
+              mr={1}
+            />
+            <Typography variant="body2">Debt</Typography>
           </Box>
         </Box>
-        <Divider />
-
+      </Box>
+      <Divider style={{ marginTop: 15 }} />
+      <Box py={2}>
         <BalanceSheet
           annualData={Stats.annbalsheet}
           quarterData={Stats.quarterbalsheet}
         />
 
-        <Divider />
+        <Divider style={{ marginTop: 24 }} />
 
         <Ratios data={RatioData} />
       </Box>
