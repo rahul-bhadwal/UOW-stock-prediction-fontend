@@ -76,9 +76,9 @@ export const StockPage = () => {
 
       <StatsCards symbol={symbol} />
 
-      <VolumeRecommandation symbol={symbol} />
-
       <SimilarityRecommandation symbol={symbol} />
+
+      <VolumeRecommandation symbol={symbol} />
 
       <Box sx={{ fontFamily: useTheme().typography.fontFamily }}>
         <CompanyStats symbol={symbol} />

@@ -137,8 +137,11 @@ export const StockChart = ({ symbol }) => {
       <Divider style={{ marginTop: 15 }} />
       <div className={classes.graphContainer} id="graph-container">
         {!isLoading ? (
-          <ResponsiveContainer width={isMobile ? 2200 : 2200} height="100%">
-            <LineChart data={stockChartData} className={classes.graph}>
+          <ResponsiveContainer width={isMobile ? 700 : "100%"} height="100%">
+            <LineChart
+              data={stockChartData.slice(-100)}
+              className={classes.graph}
+            >
               <Line
                 type="linear"
                 dataKey="Open"

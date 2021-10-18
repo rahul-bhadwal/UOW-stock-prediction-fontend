@@ -27,7 +27,9 @@ import {
   formatRealtimePredictionData,
   getPredictionApiSymbol,
 } from "../../common/utils";
-import { fetchRealtimePrediction } from "../../api/api";
+import { fetchRealtimePrediction, fetchStockJson } from "../../api/api";
+import { Colors } from "../../constants/colors";
+import { useQuery } from "react-query";
 
 const useStyles = makeStyles((theme) => ({
   graph: {
@@ -67,11 +69,18 @@ const CustomTooltip = ({ active, payload, label }) =>
 
 export const RealtimePrediction = ({ stockSymbol }) => {
   const classes = useStyles();
-  const [date, setDate] = useState(new Date("Nov 01 2020"));
+  const [date, setDate] = useState(new Date("Nov 02 2020"));
   const isMobileView = useMediaQuery("(max-width:600px)");
   const predictionSymbol = getPredictionApiSymbol(stockSymbol);
   const [predictionData, setPredictionData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [headerPred, setHeaderPred] = useState();
+
+  const {
+    data: stockData,
+    isLoading: jsonLoading,
+    error,
+  } = useQuery("stockData", () => fetchStockJson(stockSymbol));
 
   useEffect(() => {
     setIsLoading(true);
@@ -80,6 +89,19 @@ export const RealtimePrediction = ({ stockSymbol }) => {
       .catch((e) => console.log(e))
       .finally(() => setIsLoading(false));
   }, [date]);
+
+  useEffect(() => {
+    if (!jsonLoading) {
+      const item = stockData.find(
+        (data) => data.Date === moment(date).format("yyyy-MM-DD")
+      );
+      setHeaderPred(item?.Prediction.toFixed(2));
+    }
+  }, [date, stockData]);
+
+  function disableWeekends(date) {
+    return date.getDay() === 0 || date.getDay() === 6;
+  }
 
   return (
     <Box flexGrow={isMobileView ? "unset" : 1} display="flex">
@@ -95,20 +117,34 @@ export const RealtimePrediction = ({ stockSymbol }) => {
       >
         <Box display="flex" justifyContent="space-between">
           <Typography variant="h5">Realtime Prediction</Typography>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              format="dd MMM yyyy"
-              value={date}
-              color="secondary"
-              variant={isMobileView ? "dialog" : "inline"}
-              minDate={"Nov 01 2020"}
-              maxDate={"Dec 23 2020"}
-              onChange={setDate}
-              style={{ width: 149 }}
-              autoOk={true}
-              disabled={isLoading}
-            />
-          </MuiPickersUtilsProvider>
+          <Box display="flex" alignItems="center" gridGap={15}>
+            <Box
+              py={0.3}
+              px={1}
+              bgcolor={"rgb(49, 130, 189)"}
+              color="#fff"
+              borderRadius={10}
+            >
+              <Typography variant="body2" style={{ fontWeight: 700 }}>
+                {headerPred}
+              </Typography>
+            </Box>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                format="dd MMM yyyy"
+                value={date}
+                color="secondary"
+                variant={isMobileView ? "dialog" : "inline"}
+                minDate={"Nov 01 2020"}
+                maxDate={"Dec 23 2020"}
+                onChange={setDate}
+                style={{ width: 149 }}
+                autoOk={true}
+                disabled={isLoading}
+                shouldDisableDate={disableWeekends}
+              />
+            </MuiPickersUtilsProvider>
+          </Box>
         </Box>
         <Divider style={{ marginTop: 10 }} />
         {isLoading || !predictionData.length ? (

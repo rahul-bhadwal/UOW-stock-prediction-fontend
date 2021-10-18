@@ -7,7 +7,7 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { useEffect, useState } from "react";
+import clsx from "clsx";
 import { useQuery } from "react-query";
 import {
   Bar,
@@ -33,6 +33,15 @@ const useStyles = makeStyles({
     marginTop: 24,
     marginBottom: 24,
   },
+  verticalText: {
+    fontSize: 12,
+    opacity: 0.6,
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
+  transform: {
+    transform: "rotate(-90deg) translate(-110px)",
+  },
 });
 
 const CustomTooltip = ({ active, payload, label }) =>
@@ -49,7 +58,8 @@ const CustomTooltip = ({ active, payload, label }) =>
         {/* {payload.map(entry => <Typography variant='caption' >{entry.name}: {entry.value.toFixed(2)}</Typography>)} */}
         {payload.map((entry) => (
           <Typography variant="caption">
-            <b>{entry.name}</b>: {entry.value.toFixed(3)}
+            <b style={{ color: entry.stroke }}>{entry.name}</b>:{" "}
+            {entry.value.toFixed(3)}
           </Typography>
         ))}
       </Box>
@@ -89,6 +99,33 @@ export const VolumeRecommandation = ({ symbol }) => {
       ) : (
         <Box p={0}>
           <Box width="100%" overflow="auto">
+            <Box position="absolute" left={isMobile && 30}>
+              <Box width={15} height={200} flexShrink={0}>
+                <Typography
+                  className={clsx(classes.verticalText, classes.transform)}
+                >
+                  Close-Price
+                </Typography>
+              </Box>
+              <Box width={15} height={200} flexShrink={0}>
+                <Typography
+                  className={clsx(classes.verticalText, classes.transform)}
+                >
+                  OBV
+                </Typography>
+              </Box>
+              <Box width={15} height={100} flexShrink={0}>
+                <Typography
+                  className={classes.verticalText}
+                  style={{
+                    transform: "rotate(-90deg) translate(-50px)",
+                  }}
+                >
+                  Volume
+                </Typography>
+              </Box>
+            </Box>
+
             <Box width={isMobile ? 1000 : "100%"}>
               <Box width="100%" height={200}>
                 <ResponsiveContainer width={"100%"} height="100%">

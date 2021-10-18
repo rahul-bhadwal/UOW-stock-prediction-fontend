@@ -70,6 +70,36 @@ export const Recommandation = () => {
           </Box>
         </Box>
       )}
+      <Box my={3}>
+        <Typography variant="h6">Description</Typography>
+        <Divider style={{ marginTop: 15 }} />
+        <Box style={{ opacity: 0.7 }}>
+          <Typography
+            variant="body1"
+            style={{ marginTop: 25, marginBottom: 10 }}
+          >
+            <b>Voletality</b>
+          </Typography>
+          <Typography variant="body2">
+            In publishing and graphic design, Lorem ipsum is a placeholder text
+            commonly used to demonstrate the visual form of a document or a
+            typeface without relying on meaningful content. Lorem ipsum may be
+            used as a placeholder before final copy is available.
+          </Typography>
+          <Typography
+            variant="body1"
+            style={{ marginTop: 25, marginBottom: 10 }}
+          >
+            <b>Voletality</b>
+          </Typography>
+          <Typography variant="body2">
+            In publishing and graphic design, Lorem ipsum is a placeholder text
+            commonly used to demonstrate the visual form of a document or a
+            typeface without relying on meaningful content. Lorem ipsum may be
+            used as a placeholder before final copy is available.
+          </Typography>
+        </Box>
+      </Box>
     </Paper>
   );
 };

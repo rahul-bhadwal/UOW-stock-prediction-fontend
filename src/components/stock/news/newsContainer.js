@@ -38,20 +38,26 @@ export const NewsContainer = ({ stockName }) => {
   const bufferBox = !isMobileView && <Box height={3} />;
   return (
     <Paper className={classes.container} elevation={4} variant="outlined">
-      <Typography variant="h5">News headlines</Typography>
+      <Typography variant="h5">Recent news</Typography>
       <Divider style={{ marginTop: 15 }} />
       <Box
         display="grid"
         gridTemplateColumns={isMobileView ? "auto" : "auto auto"}
-        gridGap={20}
+        gridGap={5}
         height="70vh"
         overflow="scroll"
         style={{ overflowX: "hidden" }}
+        mx={"-25px"}
       >
         {bufferBox}
         <Box height={3} />
         {newsList?.map((news) => (
-          <NewsCard title={news.title} image={news.urlToImage} url={news.url} />
+          <NewsCard
+            title={news.title}
+            date={news.publishedAt}
+            image={news.urlToImage}
+            url={news.url}
+          />
         ))}
         <Box height={3} />
         {bufferBox}
