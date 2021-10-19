@@ -19,7 +19,7 @@ export const SimilarityRecommandation = ({ symbol }) => {
         justifyContent: "space-between",
       }}
     >
-      <Typography variant="h5">Similarity analysis</Typography>
+      <Typography variant="h5">Similarity Analysis</Typography>
       <Box display="flex" alignItems="center" gridGap={10}>
         {isLoading ? (
           <Skeleton width={200} height={60} style={{ margin: "-20px 0" }} />
