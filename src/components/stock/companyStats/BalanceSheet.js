@@ -61,7 +61,7 @@ export const BalanceSheet = ({ annualData, quarterData }) => {
               <TableCell>Balance</TableCell>
               <TableCell>Assets</TableCell>
               <TableCell>Debt</TableCell>
-              <TableCell>Year/Quater</TableCell>
+              <TableCell>Year/Quarter</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -102,7 +102,7 @@ export const BalanceSheet = ({ annualData, quarterData }) => {
             <BarGraph data={quarterData} />
           </Box>
           <Typography variant="body2" style={{ opacity: 0.7 }}>
-            <b>Quater</b>
+            <b>Quarter</b>
           </Typography>
         </Box>
       </Box>
