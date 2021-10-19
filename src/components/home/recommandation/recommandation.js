@@ -52,7 +52,7 @@ export const Recommandation = () => {
               isMobile={isMobile}
             />
             <Typography variant="body2" style={{ opacity: 0.6 }}>
-              <b>Voletality</b>
+              <b>Volatility</b>
             </Typography>
           </Box>
           {isMobile && <Divider style={{ margin: "40px 0", width: "100%" }} />}
