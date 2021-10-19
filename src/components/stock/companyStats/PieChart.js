@@ -52,7 +52,7 @@ export const MarginPieChart = ({ data }) => (
             <Tooltip wrapperStyle={{ fontSize: 13 }} />
             {/* <Bar dataKey="Gross profit" fill={Colors.ORANGE} />
             <Bar dataKey="Net profit" fill={Colors.GREEN_1} />
-            <Bar dataKey="Operating Magin" fill={Colors.YELLOW} /> */}
+            <Bar dataKey="Operating Margin" fill={Colors.YELLOW} /> */}
             <Bar dataKey="value" />
             <YAxis type="category" dataKey="name" domain={["auto"]} hide />
             <XAxis type="number" hide />
