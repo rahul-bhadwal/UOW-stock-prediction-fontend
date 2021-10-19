@@ -30,7 +30,7 @@ export const StockListItem = ({item}) => {
   const isRise = item.prediction === 1
 
   const getClassName =  isRise ? classes.green : classes.red
-  const getSubtitle = isRise ? 'Potentioal Rise' : 'Potentioal Fall'
+  const getSubtitle = isRise ? 'Potential Rise' : 'Potential Fall'
 
   const history = useHistory()
 
