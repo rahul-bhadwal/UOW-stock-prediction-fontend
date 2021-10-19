@@ -25,40 +25,40 @@ export const CompanyStats = ({ symbol }) => {
   const RatioData = [
     {
       fill: Colors.BLUE,
-      name: "Annual longterm Debt to Assets",
+      name: "Annual Long-Term Debt to Assets",
       value: Stats.annual_longtermdebt_to_totalassets_ratio,
     },
     {
       fill: Colors.RED_1,
-      name: "Quarter longterm Debt to Assets",
+      name: "Quarter Long-Term Debt to Assets",
       value: Stats.quarter_longtermdebt_to_totalassets_ratio,
     },
     {
       fill: Colors.ORANGE,
-      name: "Debt to Equity",
+      name: "Debt-to-Equity",
       value: Stats.debt_to_equity,
     },
     {
       fill: Colors.GREEN_1,
-      name: "Price/earning to Growth ",
+      name: "Price/Earnings-to-Growth",
       value: Stats.peg_ratio,
     },
     {
       fill: Colors.YELLOW,
-      name: "Price to Earnings",
+      name: "Price-to-Earnings",
       value: Stats.price_earnings_ratio,
     },
     {
       fill: Colors.DARK_BLUE,
-      name: "Price to Book",
+      name: "Price-to-Book",
       value: Stats.price_to_book_ratio,
     },
     {
       fill: Colors.GREEN_2,
-      name: "Price to Sales",
+      name: "Price-to-Sales",
       value: Stats.price_to_sales,
     },
-    { fill: Colors.RADIUM, name: "Quick ratio", value: Stats.quickRatio },
+    { fill: Colors.RADIUM, name: "Quick Ratio", value: Stats.quickRatio },
   ];
 
   const classes = useStyles();
@@ -66,7 +66,7 @@ export const CompanyStats = ({ symbol }) => {
   return (
     <Paper className={classes.container} elevation={4} variant="outlined">
       <Box display="flex" alignItems="center" justifyContent="space-between">
-        <Typography variant="h5">Balance sheet</Typography>
+        <Typography variant="h5">Balance Sheet</Typography>
         <Box display="flex" alignItems="center" gridGap={30}>
           <Box display="flex" alignItems="center">
             <Box
