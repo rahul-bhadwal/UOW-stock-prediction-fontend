@@ -27,7 +27,7 @@ export const Recommandation = () => {
       elevation={4}
       variant="outlined"
     >
-      <Typography variant="h5">Recommandations</Typography>
+      <Typography variant="h5">Recommendations</Typography>
       <Divider style={{ marginTop: 15 }} />
       {isLoading ? (
         <Box height={460}>
@@ -78,7 +78,7 @@ export const Recommandation = () => {
             variant="body1"
             style={{ marginTop: 25, marginBottom: 10 }}
           >
-            <b>Voletality</b>
+            <b>Volatility</b>
           </Typography>
           <Typography variant="body2">
             In publishing and graphic design, Lorem ipsum is a placeholder text
@@ -90,7 +90,7 @@ export const Recommandation = () => {
             variant="body1"
             style={{ marginTop: 25, marginBottom: 10 }}
           >
-            <b>Voletality</b>
+            <b>Volatility</b>
           </Typography>
           <Typography variant="body2">
             In publishing and graphic design, Lorem ipsum is a placeholder text
