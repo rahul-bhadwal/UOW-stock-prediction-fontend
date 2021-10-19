@@ -52,7 +52,7 @@ export const Recommandation = () => {
               isMobile={isMobile}
             />
             <Typography variant="body2" style={{ opacity: 0.6 }}>
-              <b>Voletality</b>
+              <b>Volatility</b>
             </Typography>
           </Box>
           {isMobile && <Divider style={{ margin: "40px 0", width: "100%" }} />}
@@ -81,22 +81,24 @@ export const Recommandation = () => {
             <b>Volatility</b>
           </Typography>
           <Typography variant="body2">
-            In publishing and graphic design, Lorem ipsum is a placeholder text
-            commonly used to demonstrate the visual form of a document or a
-            typeface without relying on meaningful content. Lorem ipsum may be
-            used as a placeholder before final copy is available.
+            Volatility is an indication of stock price fluctuation over time. 
+            The volatility score is computed by the standard deviation of 
+            logarithmic returns. High volatility score indicates that the 
+            stock price is not stable and could rise or fall often and low 
+            volatility score indicates that the stock price is stable.
           </Typography>
           <Typography
             variant="body1"
             style={{ marginTop: 25, marginBottom: 10 }}
           >
-            <b>Volatility</b>
+            <b>Return</b>
           </Typography>
           <Typography variant="body2">
-            In publishing and graphic design, Lorem ipsum is a placeholder text
-            commonly used to demonstrate the visual form of a document or a
-            typeface without relying on meaningful content. Lorem ipsum may be
-            used as a placeholder before final copy is available.
+             Return is any change in the value of investment and is computed by 
+             the average/mean percentage change of the “Open” price. In general, 
+             the positive value of return indicates that the stock price is 
+             expected to rise, and the negative value indicates that the stock 
+             price is expected to fall.
           </Typography>
         </Box>
       </Box>

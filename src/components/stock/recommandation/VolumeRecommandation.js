@@ -76,7 +76,7 @@ export const VolumeRecommandation = ({ symbol }) => {
 
   return (
     <Paper className={classes.container} variant="outlined">
-      <Typography variant="h5">Volume return recommendation</Typography>
+      <Typography variant="h5">Volume Return Recommendation</Typography>
       <Divider style={{ marginTop: 15 }} />
       {/* {isLoading || !data ? ( */}
       {isLoading || !data ? (

@@ -70,11 +70,11 @@ export const RevenueEarning = ({ symbol }) => {
       >
         <EarningBarChart
           data={Stats.company_earnings_last_2}
-          title="Annual revenue/earning"
+          title="Annual Revenue/Earnings"
         />
         <EarningBarChart
           data={Stats.company_quartely_earnings_last_2}
-          title="Quaterly revenue/earning (2021)"
+          title="Quaterly Revenue/Earnings (2021)"
         />
       </Box>
     </Paper>
