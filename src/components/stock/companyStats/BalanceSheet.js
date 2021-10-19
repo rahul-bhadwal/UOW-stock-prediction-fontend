@@ -61,7 +61,7 @@ export const BalanceSheet = ({ annualData, quarterData }) => {
               <TableCell>Balance</TableCell>
               <TableCell>Assets</TableCell>
               <TableCell>Debt</TableCell>
-              <TableCell>Year/Quater</TableCell>
+              <TableCell>Year/Quarter</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
