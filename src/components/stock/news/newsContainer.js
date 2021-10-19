@@ -38,7 +38,7 @@ export const NewsContainer = ({ stockName }) => {
   const bufferBox = !isMobileView && <Box height={3} />;
   return (
     <Paper className={classes.container} elevation={4} variant="outlined">
-      <Typography variant="h5">Recent news</Typography>
+      <Typography variant="h5">Recent News</Typography>
       <Divider style={{ marginTop: 15 }} />
       <Box
         display="grid"
