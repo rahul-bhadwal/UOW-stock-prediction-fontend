@@ -53,7 +53,7 @@ export const StockPage = () => {
     },
     {
       fill: Colors.YELLOW,
-      name: "Operating Magin",
+      name: "Operating Margin",
       value: Stats.operating_margin,
     },
   ];
