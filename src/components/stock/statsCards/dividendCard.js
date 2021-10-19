@@ -70,11 +70,11 @@ export const DividendCard = ({ rate, yild, avg }) => {
     <Box display="flex" gridGap={isMobile ? 18 : 24}>
       <InfoCard name="Dividend Rate" value={rate} />
       <InfoCard
-        name="Dividend Yild"
+        name="Dividend Yield"
         value={yild}
         smallFont={yild && toString(yild).length > 3}
       />
-      <InfoCard name="Dividend Yild 5y avg." value={avg} />
+      <InfoCard name="Dividend Yield 5y avg." value={avg} />
     </Box>
   );
 };
