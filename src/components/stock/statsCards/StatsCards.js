@@ -9,9 +9,9 @@ export const StatsCards = ({ symbol }) => {
 
   const infoTableData = [
     { name: "Earnings Growth", value: stock.earningsGrowth },
-    { name: "Quaterly Earnings Growth", value: stock.earningsQuarterlyGrowth },
-    { name: "Enterprice Value", value: stock.enterpriseValue },
-    { name: "Enterprice Multiple", value: stock.enterpriseMultiple },
+    { name: "Quarterly Earnings Growth", value: stock.earningsQuarterlyGrowth },
+    { name: "Enterprise Value", value: stock.enterpriseValue },
+    { name: "Enterprise Multiple", value: stock.enterpriseMultiple },
   ];
 
   return (
